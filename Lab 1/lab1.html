@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+    //Vertex Shader Code Here
+    attribute vec4 myPosition;
+
+    void main() {
+        gl_PointSize = 1.0;
+        gl_Position = myPosition;
+    }
+    </script>
+
+    <script id="fragment-shader-1" type="x-shader/x-fragment">
+    //Fragment Shader Code Here
+    
+    void main() {
+        gl_FragColor = vec4( 1.0, 1.0, 0.0, 1.0 );
+    }
+    </script>
+    <script id="fragment-shader-2" type="x-shader/x-fragment">
+    //Fragment Shader Code Here
+    
+    void main() {
+        gl_FragColor = vec4( 1.0, 0.0, 1.0, 1.0 );
+    }
+    </script>
+    <script id="fragment-shader-3" type="x-shader/x-fragment">
+    //Fragment Shader Code Here
+    
+    void main() {
+        gl_FragColor = vec4( 0.0, 1.0, 0.0, 1.0 );
+    }
+    </script>
+    <script id="fragment-shader-4" type="x-shader/x-fragment">
+    //Fragment Shader Code Here
+    
+    void main() {
+        gl_FragColor = vec4( 0.2, 0.5, 0.5, 1.0 );
+    }
+    </script>
+    <script id="fragment-shader-5" type="x-shader/x-fragment">
+    //Fragment Shader Code Here
+    
+    void main() {
+        gl_FragColor = vec4( 0.2, 0.1, 0.3, 1.0 );
+    }
+    </script>
+
+    <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="../Common/initShaders.js"></script>
+    <script type="text/javascript" src="../Common/MV.js"></script>
+    <script type="text/javascript" src="lab1.js"></script>
+</head>
+
+<body onload="init()">
+    <div>
+        Radius C: 0 <input id="sliderC" type="range" min="0" max="100" step="1" value="50" />
+        <label id="labelC">.5</label>/1
+        Center x: 0 <input id="cenXSlider" type="range" min="-100" max="100" step=".001" value="0" />
+        <label id="cenXLabel">0</label>/1
+    </div>
+    <div>
+        Radius D: 50 <input id="sliderD" type="range" min="0" max="100" step="1" value="50" />
+        <label id="labelD">.5</label>/1
+        Center y: 0 <input id="cenYSlider" type="range" min="-100" max="100" step=".001" value="0" />
+        <label id="cenYLabel">0</label>/1
+    </div>
+    <div>
+        # Divs: 3 <input id="divSlider" type="range" min="3" max="50" step="1" value="50" />
+        <label id="divsLabel">50</label>/50
+    </div>
+    <canvas id="gl-canvas" width="512" height="512">
+    </canvas>
+</body>
+</html>
