@@ -63,12 +63,9 @@ function init(){
 function getMousePosition(canvas, event) {
     let rect = canvas.getBoundingClientRect();
     let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
-
-    //console.log("Coordinate x: " + x, "Coordinate y: " + y);
+    let y = rect.height - (event.clientY - rect.top);
     x = 2*x/canvas.width - 1;
-    y = -(2*y/canvas.height - 1);
-    //console.log("Coordinate x: " + x, "Coordinate y: " + y);
+    y = 2*y/canvas.height - 1;
     
     
     arrClick.push(vec2(x, y));
