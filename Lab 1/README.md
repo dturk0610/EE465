@@ -2,7 +2,7 @@
 
 ## My Approach
 
-    My first approach to complete this lab was to first copy over the code from the simple triangle from lecture 4 so that I can get basic graphics working on another html. After doing that I quickly recognized the next tasks which were the drawing of different shapes, different colors for the shapes and different rendering functions. Once noticing this I broke down the rest of my approach into the shapes and functionality I wanted to ensure the program was working correctly:
+     - My first approach to complete this lab was to first copy over the code from the simple triangle from lecture 4 so that I can get basic graphics working on another html. After doing that I quickly recognized the next tasks which were the drawing of different shapes, different colors for the shapes and different rendering functions. Once noticing this I broke down the rest of my approach into the shapes and functionality I wanted to ensure the program was working correctly:
 
     1. The Ellipse/Circle
 
