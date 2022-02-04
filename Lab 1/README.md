@@ -28,4 +28,4 @@
 
     Just for fun again, I decided to use the circle code yet again with a new variable for the open mouth angle for pac-man. This one was very easy to do and I didn't reall run into any errors with this one.
 
-Every shape has a unique color and/or outline (the clicking shape has an outline to differentiate it from the rest of the shapes). Some are also purposfully drawn on top of others to show that the order of drawing these shapes does matter. In order to run/interact with this webpage, either pull this repo as a whole, to download the common folder and the lab folder separately, then double click on the [lab1.html](lab1.html) file
+- Every shape has a unique color and/or outline (the clicking shape has an outline to differentiate it from the rest of the shapes). Some are also purposfully drawn on top of others to show that the order of drawing these shapes does matter. In order to run/interact with this webpage, either pull this repo as a whole, to download the common folder and the lab folder separately, then double click on the [lab1.html](lab1.html) file
