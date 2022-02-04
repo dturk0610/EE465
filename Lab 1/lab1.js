@@ -168,8 +168,9 @@ function render(){
     var starCenX = -.5;
     var starCenY = -.5;
     var starWidth = .3;
-    
-    for (var theta = 0; theta<2*Math.PI; theta+=step){
+    var startAngle = 90*Math.PI/180;
+
+    for (var theta = startAngle; theta<(2*Math.PI + startAngle); theta+=step){
         if (count % 2 == 0){
             var point = vec2(starWidth*Math.cos(theta) + starCenX, starWidth*Math.sin(theta) + starCenY);
             //console.log(point);
