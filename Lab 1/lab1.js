@@ -1,5 +1,4 @@
-//First and Last Name 
-//Dakota Turk
+ //Dakota Turk
 
 //Code for Lab1
 
@@ -13,6 +12,13 @@ var divs = 1000;
 var gl;
 
 var arrClick = [];
+
+var circBufferID;
+var sqrBufferID;
+var randBufferID;
+var clickBufferID;
+var pacBufferID;
+var starBufferID;
 
 function init(){
 
@@ -51,13 +57,19 @@ function init(){
     gl=WebGLUtils.setupWebGL(canvas);
     if (!gl) { alert( "WebGL is not available" ); }
     
+    circBufferID    = gl.createBuffer();
+    sqrBufferID     = gl.createBuffer();
+    randBufferID    = gl.createBuffer();
+    clickBufferID   = gl.createBuffer();
+    pacBufferID     = gl.createBuffer();
+    starBufferID    = gl.createBuffer();
+
     render();
 
     canvas.addEventListener("mousedown", function(e)
     {
         getMousePosition(canvas, e);
     });
-
 }
 
 function getMousePosition(canvas, event) {
@@ -66,7 +78,6 @@ function getMousePosition(canvas, event) {
     let y = rect.height - (event.clientY - rect.top);
     x = 2*x/canvas.width - 1;
     y = 2*y/canvas.height - 1;
-    
     
     arrClick.push(vec2(x, y));
     if (arrClick.length >= 3){
@@ -96,20 +107,19 @@ function render(){
         arrPointsOfCirc.push(point);
         count++;
     }
-    var bufferId = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
+    gl.bindBuffer(gl.ARRAY_BUFFER, circBufferID);
     gl.bufferData( gl.ARRAY_BUFFER, flatten(arrPointsOfCirc), gl.STATIC_DRAW);
     var myShaderProgram = initShaders( gl, "vertex-shader", "fragment-shader-2" );
     gl.useProgram( myShaderProgram );
     var myPosition = gl.getAttribLocation( myShaderProgram, "myPosition" );
     gl.vertexAttribPointer( myPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( myPosition );
-
     gl.drawArrays( gl.TRIANGLE_FAN, 0, count);
     arrPointsOfCirc = [];
 
 
     var arrPointsSqr = [vec2(.1, .3), vec2(.3, .3), vec2(.3, .1), vec2(.1, .1)]
+    gl.bindBuffer(gl.ARRAY_BUFFER, sqrBufferID);
     gl.bufferData( gl.ARRAY_BUFFER, flatten(arrPointsSqr), gl.STATIC_DRAW);
     myShaderProgram = initShaders( gl, "vertex-shader", "fragment-shader-1" );
     gl.useProgram( myShaderProgram );
@@ -131,17 +141,19 @@ function render(){
     arrPointRand.push(vec2(.5, .57));
     arrPointRand.push(vec2(-.43, .5));
     
+    gl.bindBuffer(gl.ARRAY_BUFFER, randBufferID);
     gl.bufferData( gl.ARRAY_BUFFER, flatten(arrPointRand), gl.STATIC_DRAW);
     myShaderProgram = initShaders( gl, "vertex-shader", "fragment-shader-3" );
     gl.useProgram( myShaderProgram );
     myPosition = gl.getAttribLocation( myShaderProgram, "myPosition" );
     gl.vertexAttribPointer( myPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( myPosition );
-
     gl.drawArrays( gl.LINE_LOOP, 0, arrPointRand.length);
     arrPointRand = [];
     
+
     if (arrClick.length >= 3){
+        gl.bindBuffer(gl.ARRAY_BUFFER, clickBufferID)
         gl.bufferData( gl.ARRAY_BUFFER, flatten(arrClick), gl.STATIC_DRAW);
         myShaderProgram = initShaders( gl, "vertex-shader", "fragment-shader-4" );
         gl.useProgram( myShaderProgram );
@@ -186,6 +198,7 @@ function render(){
         arrOfStarPoint[i] = temp;
     }
 
+    gl.bindBuffer(gl.ARRAY_BUFFER, starBufferID);
     gl.bufferData( gl.ARRAY_BUFFER, flatten(arrOfStarPoint), gl.STATIC_DRAW);
     myShaderProgram = initShaders( gl, "vertex-shader", "fragment-shader-4" );
     gl.useProgram( myShaderProgram );
@@ -193,12 +206,12 @@ function render(){
     gl.vertexAttribPointer( myPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( myPosition );
     gl.drawArrays( gl.TRIANGLE_FAN, 0, arrOfStarPoint.length);
+    arrOfStarPoint=[];
 
 
     var arrPointsOfPacMan = [];
     var pacManWidth = .2;
     var pacManCenter = vec2(.5, -.2);
-
     var step = 2*Math.PI/50;
     var count = 0;
     var angle = 30*Math.PI/180
@@ -209,15 +222,13 @@ function render(){
         arrPointsOfPacMan.push(point);
         count++;
     }
-    
+    gl.bindBuffer(gl.ARRAY_BUFFER, pacBufferID);
     gl.bufferData( gl.ARRAY_BUFFER, flatten(arrPointsOfPacMan), gl.STATIC_DRAW);
     var myShaderProgram = initShaders( gl, "vertex-shader", "fragment-shader-5" );
     gl.useProgram( myShaderProgram );
     var myPosition = gl.getAttribLocation( myShaderProgram, "myPosition" );
     gl.vertexAttribPointer( myPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( myPosition );
-
     gl.drawArrays( gl.TRIANGLE_FAN, 0, count);
-
-
+    arrPointsOfPacMan=[];
 }   
