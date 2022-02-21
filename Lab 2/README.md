@@ -45,3 +45,5 @@ Aside from these buttons, the user can interact if one of two different ways:
     - Both buttons exhibit desired effects on the shape. Allowing for the preservation of the rotation between the two states.
 
 6. Readme documentation.
+
+In order to run/interact with this webpage, either pull this repo as a whole, to download the common folder and the lab folder separately, then double click on the [lab2.html](lab2.html) file.
