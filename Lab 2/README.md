@@ -46,4 +46,4 @@ Aside from these buttons, the user can interact if one of two different ways:
 
 6. Readme documentation.
 
-In order to run/interact with this webpage, either pull this repo as a whole, to download the common folder and the lab folder separately, then double click on the [lab2.html](lab2.html) file.
+In order to run/interact with this webpage, either pull this repo as a whole, or download the common folder and the lab folder separately, then double click on the [lab2.html](lab2.html) file.
