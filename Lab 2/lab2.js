@@ -1,15 +1,16 @@
 var gl, shaderProgram;
 
 var theta;
-var keepRunning = 1;
+var keepRotating = 1;
+
 var invh, h;
 var invw, w;
 
 var divsForShape = 5;
 var radOfShape = 100; // THIS IS IN CANVAS COORDS
 
-
-var dir = vec2(1, 0); // current movement direction of shape
+// current direction of movement for shape
+var dir = vec2(1, 0);
 var dirOffset = vec2(0, 0);
 var moveAmount = .003;
 
@@ -82,14 +83,14 @@ function render() {
 
     dirOffset[0] += moveAmount * dir[0];
     dirOffset[1] += moveAmount * dir[1];
-    theta += .01 * keepRunning;
+    theta += .01 * keepRotating;
 
     window.requestAnimationFrame(render);
 }
 
-function startRot(){ keepRunning = 1; }
+function startRot(){ keepRotating = 1; }
 
-function stopRot(){ keepRunning = 0; }
+function stopRot(){ keepRotating = 0; }
 
 function increaseSpeed(){ moveAmount +=.003; }
 
