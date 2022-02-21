@@ -4,32 +4,44 @@
 
 ## My Approach
 
-- My first approach to complete this lab was to first copy over the code from the simple triangle from lecture 4 so that I can get basic graphics working on another html. After doing that I quickly recognized the next tasks which were the drawing of different shapes, different colors for the shapes and different rendering functions. Once noticing this I broke down the rest of my approach into the shapes and functionality I wanted to ensure the program was working correctly:
+This was another fairly straight forward lab for us in get interaction and animations working. In this lab there were 6 requirements which are all listed below.
 
-1. The Ellipse/Circle
+Upon opening the HTML, the user will see a rotating shape that is also immediately moving to the right from the center of the canvas. The user can click on one of the four buttons are the bottom of the page:
 
-    The first shape I wanted to tackle was the ellipse/circle. This was because I figured it would be the one that would take the most amount of time to debug and get working correctly. I was wrong, thankfull, and this shape came out very quickly. However in order to expand upon the different radii for the equations used (x = c cos(theta) + a; y = d sin(theta) + b) I wanted there to be a way for the user to manipulate these radii while in the web browser. So to do this I added 4 different sliders that I connected into the code such that the user could widen/flatten the ellipse as well as change the center of the ellipse as they wished. I then noticed the instruction for having "more than 5 vertices" which prompted me to make a 5th slider for the number of divisions used for the circle. Connecting this one in was very easy as well and provides a much more interesting experience for the user.
+- Increase speed, This button will increase the speed every time that it is clicked. This has no max, so the shape could easily fly off very quickly if pressed many times. This is done using a global space variable (moveAmount) that, in unison with the direction global variable, is used to send the updated translation matrix to the GPU to render the shape correctly. This global space variable is just incremented by .003.
 
-2. Square
+- Decrease speed, this button doesn't allow the speed to become negative. If this were allowed then it would make the directional changes with the WASD keys seem wrong. moveAmount decreased by .003 until it reaches zero.
 
-    This shape was simple and I figured would be easy to add in for a shape option. This shape is off centered, however, to show how easy it is to make a square anywhere.
+- Start Rotation, starts the roation of the shape in the exact orientation that it is in. The global space variable keepRotating is set to 1 which is used to multiply into the theta increase so that theta is inceased by the (rotate amount)*keepRotating.
 
-3. Random shape
+- Stop Rotation, the exact opposite of above, stops the rotation in the exact orientation that it is in. Sets the keepRotating variable to 0 so that theta stops being increased.
 
-    This shape took a little bit longer to ensure that it was rendered correctly in terms of making sure the shaped didn't look like a garbled mess. When trying to draw this shape though, I wanted to find a way to specifically click on a point so that I could more easily visualize how the shape was going to be rendered. This prompted me to look for a way to print out to the console, the exact coordinate on the canvas that was click with the mouse. This made me want to make one of my last shapes on the user could draw out themselves.
+Aside from these buttons, the user can interact if one of two different ways:
 
-4. User drawn shape
+- Mouse Clicking, this will make the shape 'hop' right to where the mouse is location on the canvas. The version implemented in this version will make the exact center of the shape go to the precise point of the mouse. Previous versions would make it jump slightly above if the website was scrolled at all. In the translation matrix sent to the GPU, the offset amounts are updated to be the calculated position of where the mouse is. This offset amount is always saved in the variable dirOffset, which just represents each directions offset (this is a vec2 variable).
 
-    After quickly discovering an easy way to get the coordinates click on a canvas, I made an array that would save all positions clicked on the canvas itself. After clicking 3 or more times, all clicked positions become parts of the triangles to be drawn with the triangle fan function. This is another fun interactive feature that I added in just for fun. This one enables the user to create shapes of any size and with any number of sides.
+- WASD keys, These keys would change the direction of displacement of the object. If the object has zero velocity, its direction is still updated so that if the user reduces the speed to zero, changes the direction, then increases the speed again, the shape will move the desired changed direction. When updating the previously mention dirOffset variable, the direction the object is moving (saved in dir) is multiplied component-wise by the desired moveAmount and then added to the current dirOffset components. By pressing on W, this would set the dir value to vec2(0,1) which would make the shape start moving in the positive y direction. When pressing A, this dir value is changed to vec2(-1, 0), making the shape move in the negative x direction. S: vec2(0, -1), D: vec2(1, 0).
 
-5. Star
+## Requirements
 
-    At this point, I wanted to make yet another more complicated shape. One of the only two that I could think of was a star. For this one I copied the circle code and make the division number set to 10, 5 for each point, 5 for each valley. I made a variable for the begining angle offset and set that to 90 degrees (converted to radians for the sinusoidal functions) so that the first point would face straight up. After looping through all of the points, one issue became obvious to me. The issue of non-convex shapes and attempting to use the fan function. Since the fan function was attempting to start drawing at the tip of the stap, it would create a fan triangle across gaps that should have been there. I fixed this issue by rolling all indecies of the star down the array by one so that the first index was actually in the first valley in the star.
+1. Animation with a polygon that has more than 4 verticies.
 
-6. Pac-Man
+    - This was simple, I just made a pentagon for all of the animations re-using the circle generation from the first lab and just setting the divisions count to 5. The shape is always moving, with a couple exceptions. Due to the interaction given with the buttons at the bottom of the page, the user can choose to stop rotating the shape and to decrease the displacement speed until the shape stops moving.
 
-    Just for fun again, I decided to use the circle code yet again with a new variable for the open mouth angle for pac-man. This one was very easy to do and I didn't reall run into any errors with this one.
+2. Direction changes with WASD.
 
-- Every shape has a unique color and/or outline (the clicking shape has an outline to differentiate it from the rest of the shapes). Some are also purposfully drawn on top of others to show that the order of drawing these shapes does matter. In order to run/interact with this webpage, either pull this repo as a whole, to download the common folder and the lab folder separately, then double click on the [lab1.html](lab1.html) file.
+    - All direction changes work as intended. W for up, A for left, S for down, D for right.
 
-- Something that may be noted is that in order to make different colors for each shape, instead of using a uniform or global type color variable, I simply used different fragment shaders for each shape. This was a very easy implementation for different colors. In a possible future version of this lab I may make two or three of the shapes use the same fragment shader, but different colors. Since this wasn't explicitly stated in the lab I figured my implementation would be fine as this was one of the most suggested way that I could find on colorizing multiple shapes.
+3. Increase and decrease speed buttons.
+
+    - Increase and decrease speed buttons work as intended. With the added bonus that the decrease speed button will not allow negative speeds.
+
+4. Mouse click jumping.
+
+    - Mouse click jumping is working as intended.
+
+5. Start and stop rotate.
+
+    - Both buttons exhibit desired effects on the shape. Allowing for the preservation of the rotation between the two states.
+
+6. Readme documentation.

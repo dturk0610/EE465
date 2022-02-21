@@ -1,6 +1,6 @@
 # EE465
 
-This repo with house all of my personal implementations for the assignments and lectures in the EE465 course. Computer Graphics. 
+This repo with house all of my personal implementations for the assignments and lectures in the EE465 course. Computer Graphics.
 
 All code in the [Common](Common/) folder was provided upon instruction and therefore I do not claim any ownership of.
 
