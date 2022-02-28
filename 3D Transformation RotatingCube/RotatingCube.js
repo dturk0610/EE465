@@ -1,7 +1,21 @@
 var gl;
 var myShaderProgram;
+var thetax = 0, thetay = 0;
+var rotXMat, rotYMat;
 
 function init() {
+
+    rotXMat = mat4( [1, 0, 0, 0],
+                    [0, 1, 0, 0],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1]);
+
+    rotYMat = mat4( [1, 0, 0, 0],
+                    [0, 1, 0, 0],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1]);
+    
+
     var canvas=document.getElementById("gl-canvas");
     gl=WebGLUtils.setupWebGL(canvas);
     
@@ -84,6 +98,15 @@ function setupCube() {
     var iBuffer = gl.createBuffer();
     gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, iBuffer );
     gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(indexList), gl.STATIC_DRAW );
+
+    var transMatUnifor = gl.getUniformLocation( myShaderProgram, "transMat");
+    var transMat = mat4( [ 1, 0, 0, 0 ],
+                            [ 0, 1, 0, 0 ],
+                            [ 0, 0, 1, 0 ],
+                            [ 0, 0, 0, 1 ] );
+
+    // Sends the matrix created above to the GPU and then draws the shape.
+    gl.uniformMatrix4fv( transMatUnifor, false, flatten(transMat) );
 }
 
 function render() {
@@ -95,6 +118,7 @@ function render() {
 
 function rotateAroundX() {
     // will implement this to rotate the cube around the X-axis
+    thetax += .05;
     
     // Gets ths uniform position in GL of the translation matrix
     var transMatUnifor = gl.getUniformLocation( myShaderProgram, "transMat");
@@ -102,21 +126,37 @@ function rotateAroundX() {
     // Builds the matrix using the mat3 function provided in the MV library.
     // This version allows for intuitive contruction of the matricies as seen
     // here.
-    var transMatArr = mat4( [ 1, 0, 0, 0 ],
-                            [ 0, Math.cos(.5), Math.sin(.5), 0 ],
-                            [ 0, -Math.sin(.5), Math.cos(.5), 0 ],
-                            [ 0, 0, 0, 1 ]);
+    rotXMat = mat4( [ 1, 0, 0, 0 ],
+                    [ 0, Math.cos(thetax), Math.sin(thetax), 0 ],
+                    [ 0, -Math.sin(thetax), Math.cos(thetax), 0 ],
+                    [ 0, 0, 0, 1 ]);
     
-                            
+    var transMat = mult(rotXMat, rotYMat);
     
     // Sends the matrix created above to the GPU and then draws the shape.
-    gl.uniformMatrix4fv( transMatUnifor, false, flatten(transMatArr) );
+    gl.uniformMatrix4fv( transMatUnifor, false, flatten(transMat) );
     render();
 }
 
 function rotateAroundY() {
-    // will implement to rotate the cube around the Y-axis
+    // will implement this to rotate the cube around the X-axis
+    thetay += .05;
     
+    // Gets ths uniform position in GL of the translation matrix
+    var transMatUnifor = gl.getUniformLocation( myShaderProgram, "transMat");
+
+    // Builds the matrix using the mat3 function provided in the MV library.
+    // This version allows for intuitive contruction of the matricies as seen
+    // here.
+    rotYMat = mat4( [  Math.cos(thetay), 0, Math.sin(thetay), 0 ],
+                    [ 0, 1, 0, 0 ],
+                    [ -Math.sin(thetay), 0, Math.cos(thetay), 0 ],
+                    [ 0, 0, 0, 1 ]);
+    
+    var transMat = mult(rotXMat, rotYMat);
+    
+    // Sends the matrix created above to the GPU and then draws the shape.
+    gl.uniformMatrix4fv( transMatUnifor, false, flatten(transMat) );
     render();
 }
 
