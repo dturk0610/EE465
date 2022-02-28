@@ -6,3 +6,4 @@ All code in the [Common](Common/) folder was provided upon instruction and there
 
 - [Lab 1](Lab%201/README.md)
 - [Lab 2](Lab%202/README.md)
+- [Lab 3](Lab%203/README.md)
