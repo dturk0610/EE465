@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-            <title>Cube</title>
+            <title>3D Transformations</title>
             
             <script id="vertex-shader" type="x-shader/x-vertex">
                 attribute vec4 myPosition;
@@ -19,11 +19,11 @@
                     vi.y = myPosition.y;
                     vi.z = myPosition.z;
                     vi.w = myPosition.w;
-                    vec4 vf = scaleMat*rotMat*vi;
+                    vec4 vf = scaleMat*vi;
+                    vf = rotMat*vf;
                     vf = moveMat*vf;
                     gl_Position = vf;
                 }
-
             </script>
             
             <script id="fragment-shader" type="x-shader/x-fragment">
@@ -33,7 +33,6 @@
                 void main() {
                     gl_FragColor = vColor;
                 }
-                
             </script>
             
             <script type="text/javascript" src="../Common/webgl-utils.js"></script>
@@ -44,7 +43,7 @@
             
     </head>
     
-    <body onload = "init()" onkeydown="changeDirection(event)">
+    <body onload = "init()" onkeydown="handleInput(event)">
         <canvas id="gl-canvas" width="512" height="512"></canvas><br/>
     </body>
 </html>
