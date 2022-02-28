@@ -113,10 +113,10 @@ function setupShape() {
                     vec4( -.2, -.2,  -.2,  1), // p1
                     vec4(  .2, -.2,  -.2,  1), // p2
                     vec4(  .4,  .2,  -.2,  1), // p3
-                    vec4(  .4,  .2,  .2,  1), // p4
-                    vec4(  .0,  .2,  .2,  1), // p5
-                    vec4( -.2, -.2,  .2,  1), // p6
-                    vec4(  .2, -.2,  .2,  1)];  // p7
+                    vec4(  .4,  .2,   .2,  1), // p4
+                    vec4(  .0,  .2,   .2,  1), // p5
+                    vec4( -.2, -.2,   .2,  1), // p6
+                    vec4(  .2, -.2,   .2,  1)];  // p7
 
     // Colors at Vertices of shape.
     var vertexColors = [vec4( 0.0, 0.0, 1.0, 1.0), // p0
@@ -197,7 +197,7 @@ function render() {
 // This is called for every correct input. This will calculate the new translation
 // matrix and then send them all to the GPU. They are calculated in the order that
 // they are applied in. Scale, Rotate, translate.
-function translateShape(){
+function transformShape(){
 
     // Makes the scale matrix
     scaleMat = mat4( [ scaleX, 0, 0, 0 ],
@@ -225,7 +225,7 @@ function translateShape(){
     
     // Calclates the full rotation matrix. This is typically done in the ZYX order.
     // Well, actually, typically Euler angles aren't used, instead quaternions are
-    // to avoid situations like gimble lock, but when using Euler angles, this order
+    // to avoid situations like gimbal lock, but when using Euler angles, this order
     // is typcially taken.
     var rotMat = mult(rotZMat, rotYMat);
     rotMat = mult(rotMat, rotXMat);
@@ -258,22 +258,22 @@ function translateShape(){
 function handleInput(event){
     var offset = .05;
     var key = event.key;
-    switch(key){
-        case "1": thetax += offset; translateShape(); break; // 1 - Rotate off x axis
-        case "2": thetay += offset; translateShape(); break; // 2 - Rotate off y axis
-        case "3": thetaz += offset; translateShape(); break; // 3 - Rotate off z axis
-        case "ArrowRight": transX += offset; translateShape(); break; // right - translate to the right
-        case "ArrowLeft": transX -= offset; translateShape(); break; // left - translate to the left
-        case "ArrowUp": transY += offset; translateShape(); break; // up - translate up
-        case "ArrowDown": transY -= offset; translateShape(); break; // down - translate down
-        case "f": transZ += offset; translateShape(); break; // forward - translate in a positive z sense (into screen)
-        case "b": transZ -= offset; translateShape(); break; // backward - translate in a negative z sense (out of screen)
-        case "y": scaleX += offset; translateShape(); break; // Grow in X direction
-        case "u": scaleX -= offset; translateShape(); break; // Shrink in X direction
-        case "h": scaleY += offset; translateShape(); break; // Grow in Y direction
-        case "j": scaleY -= offset; translateShape(); break; // Shrink in Y direction
-        case "n": scaleZ += offset; translateShape(); break; // Grow in Z direction
-        case "m": scaleZ -= offset; translateShape(); break; // Shrink in Z direction
+    switch( key.toLowerCase() ){
+        case "1": thetax += offset; transformShape(); break; // 1 - Rotate off x axis
+        case "2": thetay += offset; transformShape(); break; // 2 - Rotate off y axis
+        case "3": thetaz += offset; transformShape(); break; // 3 - Rotate off z axis
+        case "arrowright": transX += offset; transformShape(); break; // right - translate to the right
+        case "arrowleft": transX -= offset; transformeShape(); break; // left - translate to the left
+        case "arrowup": transY += offset; transformShape(); break; // up - translate up
+        case "arrowdown": transY -= offset; transformShape(); break; // down - translate down
+        case "f": transZ += offset; transformShape(); break; // forward - translate in a positive z sense (into screen)
+        case "b": transZ -= offset; transformShape(); break; // backward - translate in a negative z sense (out of screen)
+        case "y": scaleX += offset; transformShape(); break; // Grow in X direction
+        case "u": scaleX -= offset; transformShape(); break; // Shrink in X direction
+        case "h": scaleY += offset; transformShape(); break; // Grow in Y direction
+        case "j": scaleY -= offset; transformShape(); break; // Shrink in Y direction
+        case "n": scaleZ += offset; transformShape(); break; // Grow in Z direction
+        case "m": scaleZ -= offset; transformShape(); break; // Shrink in Z direction
         default: break;
     }
 }
