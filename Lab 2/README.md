@@ -1,4 +1,4 @@
-# Lab 1
+# Lab 2
 
 [Github Repo](https://github.com/dturk0610/EE465)
 
