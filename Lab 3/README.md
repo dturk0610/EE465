@@ -79,7 +79,7 @@ As for the control of each of these matricies, the user can manipulate the trans
 
 1. Non-Cuboid polyhedron
 
-    - This restriction was to help us understand the vertex mapping and triangle face mapping of the shapes we use. While a slightly more complex shape my be used, and will be soon, currently implemented is a simple parallel-piped prism of a parallelogram.
+    - This restriction was to help us understand the vertex mapping and triangle face mapping of the shapes we use. While a slightly more complex shape my be used, and will be soon, currently implemented is a simple parallel-piped prism of a parallelogram. - This has been updated, instead the currently implemented possibilities include a icosahedron, a not-quite-icosohedron and a octahedron. Each of course would need to have their respective section uncommented and the other commented back out.
 
 2. Each vertex has a different color and each face interpolated between the vertex.
 
