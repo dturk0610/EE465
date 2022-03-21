@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+    precision mediump float;
+    attribute vec4 vertexPosition;
+    attribute vec3 nv;
+    // Uniforms for modelview, modelview inverse transpose
+    // and projections
+    
+    // Uniform to decide if orthographic is on
+    // or not (in which case perspective is on)
+    
+    // Uniform for light position for light source
+    // (only one light source used here).
+    
+    // Uniforms for ambient, diffuse, and specular
+    // components of light for light source
+
+    // Varying vectors for attenuated components of light,
+    // and for incident ray (i), viewing ray (view), and normal (n)
+    
+    
+    void main() {
+        
+        // Transform your vertices by the modelview matrix
+        
+        // Get reflection for light source
+        // since the distance is fairly large, the distance^2 is even larger,
+        // so it is better to use the form a * distance^2 + b * distance + c
+        // with small values (a = .00005, b = .0, c = .0) for the constants.
+        
+        // Set up i, view, and n
+        
+        if (orthIsOn > 0.5) {
+        
+        } else {
+            
+        }
+    }
+
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+    precision mediump float;
+    
+    // Uniforms for ambient, diffuse, and specular
+    // coefficients
+    
+    // Uniform for shininess
+    
+    // Varying vectors for attenuated components of light,
+    // and for incident ray (i), viewing ray (view), and normal (n)    
+    
+    void main() {
+        
+        // The varying vectors have been interpolated from the
+        // vertex shader, but during interpolation, the values
+        // at the fragments lose the normalization. So they need
+        // to be re-normalized
+        
+        // Ambient reflection
+        
+        // Diffuse reflection
+        // costheta1 will contain dot product between incident
+        // direction and transformed normal
+        
+        // Specular reflection
+        
+        // Add all the ambient, diffuse, and specular reflections from all the light sources together
+    
+    }
+
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="teapotSetup.js"></script>
+<script type="text/javascript" src="teapotObject.js"></script>
+</head>
+
+<body onload = "initGL()">
+    <canvas id="gl-canvas" height="512" width="512">
+    </canvas>
+    <button id="orthButton" onclick="showOrthographic()">Orthographic</button>
+    <button id="perspButton" onclick="showPerspective()">Perspective</button>
+</body>
+</html>
