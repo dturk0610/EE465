@@ -1,4 +1,3 @@
-
 var gl;
 var numVertices;
 var numTriangles;
@@ -76,12 +75,12 @@ function initGL(){
     // Create the buffer for the normals
     var normalsbuffer = gl.createBuffer();
     // bind the buffer to the ARRAY_BUFFER target for WebGL to see it
-    gl.bindBuffer(gl.ARRAY_BUFFER,normalsbuffer);
+    gl.bindBuffer( gl.ARRAY_BUFFER,normalsbuffer );
     // send the data to the GPU.
-    gl.bufferData(gl.ARRAY_BUFFER, flatten(vertexNormals), gl.STATIC_DRAW);
+    gl.bufferData( gl.ARRAY_BUFFER, flatten( vertexNormals ), gl.STATIC_DRAW );
     // Set up a pointer to iterate over the the buffered normals,
     // and associate it with the attribute 'nv' in the shader
-    var vertexNormalPointer = gl.getAttribLocation(myShaderProgram,"nv");
+    var vertexNormalPointer = gl.getAttribLocation( myShaderProgram, "nv" );
     // Set up the vertex normal pointer to iterate over every 3 adjacent
     // values (x, y, and z coordinates of normal)
     gl.vertexAttribPointer( vertexNormalPointer, 3, gl.FLOAT, false, 0, 0 );
@@ -165,7 +164,6 @@ function initGL(){
     gl.uniform3f( Ialoc, 0.1, 0.1, 0.1 );
     gl.uniform3f( Idloc, 0.8, 0.8, 0.5 );
     gl.uniform3f( Isloc, 0.8, 0.8, 0.8 );
-
 
     // render the object
     drawObject();
