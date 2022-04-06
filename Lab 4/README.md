@@ -46,6 +46,14 @@ At this point all of what needed to be implemented had been. The last thing that
 
 ![OrhtoChange Gif](Screenshots/orthoChange.gif)
 
-After working on the viewing/lighting code that was given during class, the first major challenge that I wanted to overcome was to get something to view in the scene (as the chair object had not been released yet). To do this I used the Quad class that is mentioned in the class/objects approach. After populating the scene with these quads, I needed to get the perspective camera working. This took a bunch of trouble shooting and comparing what I had to a similar scene using the [Unity Game engine](https://unity.com). After I got this working (this rendering process is outlined in the engine approach), I then needed to get types of lighting working.
+The final thing that I wanted to add in, was the "look at" functions. Oh boy, was this a doozy. Since I am using quaternions and I wanted to keep my code true to this, figuring out how to get the look at function to work was, to say the least, a process. However, after much pain and frustration, I got it to work (all controls detailed below):
 
-The first lighting type I wanted to add in is called directional lighting. This type of light source can be best understood as a bright light source that acts as ambient type of light that affects all objects in the scene with the same angle. A good example of this would be our sun. The sun is a very bright light source that is placed far enough away from Earth such that all light that comes from it hits one large portion of the surface at the same angle.  
+![LookAt Gif](Screenshots/lookAt.gif)
+
+This all was a very frustrating process as I was attempting to implement this all. A lot of debugging and bug fixing happened as I was comparing this project to attributes from the [Unity Game engine](https://unity.com). I am very familiar with that environment and was using Unity's camera to figure out what was wrong with my matricies that described where the camera was. However, after a long time of trial an error, eventually I got something that looked pretty good so far. The only control that is, questionable in how it makes the app look visually is the look at functionality. There is a weird snapping effect that can happen that feels a bit jarring that will make me need to revisit this feature in the future. However, until then enjoy Z-targetting at its finest.
+
+## Controls
+
+### Movement
+
+- W: move forward based on where the player/user is looking
