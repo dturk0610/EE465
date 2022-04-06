@@ -50,10 +50,19 @@ The final thing that I wanted to add in, was the "look at" functions. Oh boy, wa
 
 ![LookAt Gif](Screenshots/lookAt.gif)
 
-This all was a very frustrating process as I was attempting to implement this all. A lot of debugging and bug fixing happened as I was comparing this project to attributes from the [Unity Game engine](https://unity.com). I am very familiar with that environment and was using Unity's camera to figure out what was wrong with my matricies that described where the camera was. However, after a long time of trial an error, eventually I got something that looked pretty good so far. The only control that is, questionable in how it makes the app look visually is the look at functionality. There is a weird snapping effect that can happen that feels a bit jarring that will make me need to revisit this feature in the future. However, until then enjoy Z-targetting at its finest.
+This all was a very frustrating process as I was attempting to implement this all. A lot of debugging and bug fixing happened as I was comparing this project to attributes from the [Unity Game engine](https://unity.com). I am very familiar with that environment and was using Unity's camera to figure out what was wrong with my matricies that described where the camera was. However, after a long time of trial an error, eventually I got something that looked pretty good. The only control that is, questionable in how it makes the app look visually is the look at functionality. There is a weird snapping effect that can happen that feels a bit jarring that will make me need to revisit this feature in the future. However, until then enjoy Z-targetting at its finest.
 
 ## Controls
 
 ### Movement
 
-- W: move forward based on where the player/user is looking
+- W: Move forward based on where the player/user is looking
+- A: Move left based on where the player/user is looking
+- S: Move backward based on where the player/user is looking
+- D: Move right based on where the player/user is looking
+
+### View
+
+- E: Look directly at the chair
+- L: Turn off/on the specular lighting
+- O: Turn off/on orthographic projection
