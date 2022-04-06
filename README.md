@@ -4,6 +4,7 @@ This repo with house all of my personal implementations for the assignments and 
 
 All code in the [Common](Common/) folder was provided upon instruction and therefore I do not claim any ownership of.
 
-- [Lab 1](Lab%201/README.md)
-- [Lab 2](Lab%202/README.md)
-- [Lab 3](Lab%203/README.md)
+- [Lab 1](/Lab%201/README.md)
+- [Lab 2](/Lab%202/README.md)
+- [Lab 3](/Lab%203/README.md)
+- [Lab 4](/Lab%204/README.md)
