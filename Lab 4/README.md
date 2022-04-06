@@ -10,13 +10,41 @@ Oh boy, if you aren't already, you might want to sit down for this. This entire 
 
 The [3D Engine](engine.md) that I wanted to implement is constantly being adapted as I am adding in new features. The idea behind this [engine](engine.md) is that I wanted to have something that was very adaptable. Adaptable to the point that it would be easy enough to implement feautures such as a drag and drop of obj files or something similar. At the very least I wanted to make it so that a developer (as of right now me specifically) would be able to add new objects into the scene with as minmal lines of code as possible. More about the [engine](engine.md) specifically can be found [here](engine.md). This information will hopefully update more as I update the project and my future labs as a whole. The separation of this approach from the lab's approach will allow me to update these approach files separately so that I can reuse them in the other labs/projects that use the same [3D engine](engine.md).
 
-## Math/class objects approach
+## [Math/class objects](objAndClass.md) approach
 
 What is meant by this approach is simply that new objects and classes were implemented into all of this code. This was namely done for easy of access to variables and to reduce weird issues that I was having with the [MV](../Common/MV.js) objects from the [MV](../Common/MV.js) code in the [Common](../Common/) folder. Another reasoning to this was due to my interest in implementing a very useful class called quaternions. More about this class will be dicussed in full here, as well as all of the other useful classes and objects that I used to fully implement this engine. This information will hopefully update more as I update the project and my future labs as a whole. The separation of this approach from the lab's approach will allow me to update these approach files separately so that I can reuse them in the other labs/projects that use the same 3D engine.
 
 ## Lab specific approach
 
-For me, this lab served as a way to get modular lighting situations and object rendering working as I prepare and develop for the final game project for the end of the semester. Knowing that I needed to create an interactive 3D scene for that final project, I wanted to make this scene as interactive and adaptable as possible too. Because of this, the aforementioned approaches are fitting to have came first for this lab.
+For me, this lab served as a way to get modular lighting situations and object rendering working as I prepare and develop for the final game project for the end of the semester. Knowing that I needed to create an interactive 3D scene for that final project, I wanted to make this scene as interactive and adaptable as possible too. Because of this, the aforementioned approaches are fitting to have came first for this lab. As for the intention of this class, the intention was to learn how to setup different lighting methods, get both perspecitve and orthographic projections working as well as serve as an introduction to the 3D environment. A chair object was provided as the object to have rendered. However, given the aforementioned engine, this interpretation of the lab will have a couple other viewable objects.
+
+The first step that I had to take was to get viewing successfully working on the scene. To do this I first set up a series of differently colored quad objects and got them to be viewed in the scene:
+
+<img src="Screenshots/wallsShot.png" alt="WallShotPNG" width="600"/>
+
+The next thing I wanted to get working was a brief amount of movement (all controls detailed below):
+
+![Move Gif](Screenshots/movement.gif)
+
+Next was rotations to allow for the user to turn around and observe their environment (all controls detailed below):
+
+![Look Gif](Screenshots/look.gif)
+
+After these were both working it was onto directional and point light sources (non specular):
+
+![Lights Gif](Screenshots/lights.gif)
+
+Keeping in mind that the above lights do not use specular reflections, the next thing was to integrate a specular lighting toggle where the user could toggle between the two (all controls detailed below):
+
+![SpecLights Gif](Screenshots/specLights.gif)
+
+Finally after getting all view related things working, I imported the given chair object and added it to the scene to view it:
+
+![Chair gif](Screenshots/chair.gif)
+
+At this point all of what needed to be implemented had been. The last thing that I wanted to get implemented and working was the toggle for changing the projection matrix from perspective to othorgraphic and back. After adding that in we get (all controls detailed below):
+
+![OrhtoChange Gif](Screenshots/orthoChange.gif)
 
 After working on the viewing/lighting code that was given during class, the first major challenge that I wanted to overcome was to get something to view in the scene (as the chair object had not been released yet). To do this I used the Quad class that is mentioned in the class/objects approach. After populating the scene with these quads, I needed to get the perspective camera working. This took a bunch of trouble shooting and comparing what I had to a similar scene using the [Unity Game engine](https://unity.com). After I got this working (this rendering process is outlined in the engine approach), I then needed to get types of lighting working.
 
