@@ -20,7 +20,7 @@ For me, this lab served as a way to get modular lighting situations and object r
 
 The first step that I had to take was to get viewing successfully working on the scene. To do this I first set up a series of differently colored quad objects and got them to be viewed in the scene:
 
-<img src="Screenshots/wallsShot.png" alt="WallShotPNG" width="600"/>
+![Walls PNG](Screenshots/wallsShot.png)
 
 The next thing I wanted to get working was a brief amount of movement (all controls detailed below):
 
