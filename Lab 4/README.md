@@ -63,6 +63,7 @@ This all was a very frustrating process as I was attempting to implement this al
 
 ### View
 
+- Click and drag with mouse: This is the main looking around functionality
 - E: Look directly at the chair
 - L: Turn off/on the specular lighting
 - O: Turn off/on orthographic projection
