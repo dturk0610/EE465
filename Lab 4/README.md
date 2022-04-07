@@ -66,3 +66,26 @@ This all was a very frustrating process as I was attempting to implement this al
 - E: Look directly at the chair
 - L: Turn off/on the specular lighting
 - O: Turn off/on orthographic projection
+- 1-6: Turn off/on corresponding light (1-3 for the 3 directional lights, 4-6 for the 3 point lights)
+
+## Requirements
+
+1. Setting up the camera using the look at method
+
+    - This task was handled with the "look at" functionality of the "e" key. This is done using quaternions as can and will be explained in the math/classes readme
+
+2. Implementing orthographic and perspective projections
+
+    - As mentioned in the controls section and detailed (and shown above) the othographic and perspective projections can be toggled using the O key at any moment during the app.
+
+3. Implementing two different lights
+
+    - Uhhh, there are 6 different lights and two different types of lights. All of which can be toggled using the numbers 1-6.
+
+4. Implementing specular and non-specular toggle
+
+    - This has been done and can be toggled using the L key.
+
+5. Discussion of implementation
+
+    - While for now the implementation of the engine and math has not been fully detailed yet, this lab's implementation should be fully detailed at this point. As I continue to update this and the engine I will continue to remove weird english or sentences that are no longer applicable (things that say should, or will, etc...)
