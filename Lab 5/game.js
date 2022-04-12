@@ -112,9 +112,9 @@ function setupScene(){
     chair.meshRenderer = new MeshRenderer( chair, basicMaterial, baseRenderSetup, baseRender );
     myScene.addObject( chair );
 
-    var dice = new GameObject( "die", new Vector4( 0, 1, 0, 1 ), Quat.identity, new Vector3( .1, .1, .1 ) );
+    var dice = new GameObject( "die", new Vector4( 0, 1, -2, 1 ), Quat.identity, new Vector3( .1, .1, .1 ) );
     dice.mesh = new Mesh( getIcosaVerts(), getIcosaFaces() );
-    var basicMaterial = new Material( baseShader, dice );
+    var basicMaterial = new Material( baseShader, dice, new Vector3( 1, 0, 0 ), new Vector3( .8, 0, 0 ), new Vector3( 0, 0, 1 ), 10 );
     dice.meshRenderer = new MeshRenderer( dice, basicMaterial, baseRenderSetup, baseRender );
     myScene.addObject( dice );
 

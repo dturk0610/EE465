@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-<script  id="vertex-shader-quad" type="x-shader/x-vertex">
-    
+    <script id="vertex-shader-quad" type="x-shader/x-vertex">
+
     precision mediump float;
     attribute vec4 vertexPosition;
     
@@ -16,7 +17,7 @@
     }
 </script>
 
-<script id="fragment-shader" type="x-shader/x-fragment">
+    <script id="fragment-shader" type="x-shader/x-fragment">
 
     precision mediump float;
 
@@ -30,7 +31,7 @@
 
 
 
-<script id="vertex-phrongLighting" type="x-shader/x-vertex">
+    <script id="vertex-phrongLighting" type="x-shader/x-vertex">
 
     precision mediump float;
     attribute vec4 vertexPosition;
@@ -91,7 +92,7 @@
 </script>
 
 
-<script id="fragment-phrongLighting" type="x-shader/x-fragment">
+    <script id="fragment-phrongLighting" type="x-shader/x-fragment">
 
     precision mediump float;
     
@@ -158,7 +159,7 @@
 
 </script>
 
-<script id="vertex-lighting" type="x-shader/x-vertex">
+    <script id="vertex-lighting" type="x-shader/x-vertex">
 
     precision mediump float;
     
@@ -185,7 +186,7 @@
 </script>
 
 
-<script id="fragment-lighting" type="x-shader/x-fragment">
+    <script id="fragment-lighting" type="x-shader/x-fragment">
 
     precision mediump float;
     
@@ -299,26 +300,29 @@
 </script>
 
 
-<script type="text/javascript" src="../Common/webgl-utils.js"></script>
-<script type="text/javascript" src="../Common/initShaders.js"></script>
-<script type="text/javascript" src="../Common/MV.js"></script>
-<script type="text/javascript" src="vector.js"></script>
-<script type="text/javascript" src="scene.js"></script>
-<script type="text/javascript" src="camera.js"></script>
-<script type="text/javascript" src="gameObject.js"></script>
-<script type="text/javascript" src="quaternion.js"></script>
-<script type="text/javascript" src="matrix.js"></script>
-<script type="text/javascript" src="game.js"></script>
-<script type="text/javascript" src="lights.js"></script>
-<script type="text/javascript" src="Objects/chair.js"></script>
-<script type="text/javascript" src="Objects/icosa.js"></script>
-<script type="text/javascript" src="Materials/chairMaterial.js"></script>
-<script type="text/javascript" src="Materials/floorMaterial.js"></script>
-<script type="text/javascript" src="Materials/testDirLightMat.js"></script>
+    <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="../Common/initShaders.js"></script>
+    <script type="text/javascript" src="../Common/MV.js"></script>
+    <script type="text/javascript" src="vector.js"></script>
+    <script type="text/javascript" src="scene.js"></script>
+    <script type="text/javascript" src="camera.js"></script>
+    <script type="text/javascript" src="gameObject.js"></script>
+    <script type="text/javascript" src="quaternion.js"></script>
+    <script type="text/javascript" src="matrix.js"></script>
+    <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="lights.js"></script>
+    <script type="text/javascript" src="Objects/chair.js"></script>
+    <script type="text/javascript" src="Objects/icosa.js"></script>
+    <script type="text/javascript" src="Materials/chairMaterial.js"></script>
+    <script type="text/javascript" src="Materials/floorMaterial.js"></script>
+    <script type="text/javascript" src="Materials/testDirLightMat.js"></script>
+    <img id="d20Tex" hidden src="d20Texture.png" />
 </head>
 
-<body onload = "init()">
-    <canvas id="gl-canvas" height="450" width="800"> <!-- I really want this to be 900, 1600 though -->
+<body onload="init()">
+    <canvas id="gl-canvas" height="450" width="800">
+        <!-- I really want this to be 900, 1600 though -->
     </canvas>
 </body>
+
 </html>
