@@ -1,4 +1,27 @@
-var frag = `
+const baseVert = `
+precision mediump float;
+    
+attribute vec4 vertexPosition;
+attribute vec3 nv;
+
+uniform mat4 worldMat, worldMatInverse, projectMat, worldMatTransposeInverse;
+
+varying vec3 v_normal;
+varying vec3 fragPos;
+
+void main() {
+
+    vec4 vertexPositionTransformed = worldMat * vertexPosition;
+    fragPos = (worldMat * vertexPosition).xyz;
+    gl_Position = projectMat * vertexPositionTransformed;
+
+    vec4 tempNV = vec4( nv.x, nv.y, nv.z, 1.0 );
+    tempNV = worldMatTransposeInverse * tempNV;
+    v_normal = tempNV.xyz;
+
+}`;
+
+const baseFrag = `
 precision mediump float;
 
 varying vec3 v_normal;

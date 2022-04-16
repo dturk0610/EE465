@@ -37,9 +37,7 @@ function setupGL(){
     gl.clearColor( 0.0, 0.0, 0.0, 1.0 );
     MeshRenderer.setGL(gl);
     
-    floorShader = initShaders( gl, "vertex-shader-quad", "fragment-shader" );
-    lightShader = initShaders( gl, "vertex-phrongLighting", "fragment-phrongLighting" );
-    baseShader = initShaders( gl, "vertex-lighting", "fragment-lighting" );
+    baseShader = initShaders( gl, baseVert, baseFrag );
 }
 
 
