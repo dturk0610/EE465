@@ -6,7 +6,6 @@ baseTextRenderSetup = function(){
 
     gl.bindBuffer( gl.ARRAY_BUFFER, this.texCoordBuffer );
     var textCoords = getTextCoords();
-    console.log(textCoords);
     gl.bufferData( gl.ARRAY_BUFFER, Vector2.flatten(textCoords), gl.STATIC_DRAW );
 
     // Create a texture.
@@ -16,7 +15,8 @@ baseTextRenderSetup = function(){
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 255, 255]));
     // Asynchronously load an image
     var image = new Image();
-    image.src = "d20Texture.png";
+    image.crossOrigin = "";
+    image.src = "http://localhost:8000/d20Texture.png";
     image.addEventListener('load', function() {
       // Now that the image has loaded make copy it to the texture.
       gl.bindTexture( gl.TEXTURE_2D, texture );

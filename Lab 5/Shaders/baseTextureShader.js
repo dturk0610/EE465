@@ -135,7 +135,7 @@ void main() {
         if ( pointLights[i].base.isOn ) total += CalcPointLight( pointLights[i], normal );
     }
     vec4 texCol = texture2D( u_texture, v_texcoord );
-    gl_FragColor = texCol;
-    //gl_FragColor = vec4( texCol.r*total.r, texCol.g*total.g, texCol.b*total.b, 1.0 );
+    //gl_FragColor = texCol;
+    gl_FragColor = vec4( texCol.r*total.r, texCol.g*total.g, texCol.b*total.b, 1.0 );
 }
 `;
