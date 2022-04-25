@@ -4,53 +4,27 @@
 
 ## My Approach
 
-Oh boy, if you aren't already, you might want to sit down for this. This entire discussion of this lab will be broken up into a few sections. One of the first sections has to deal with the [3D Engine](engine.md) that I am creating. The next key feature/component that will be discussed is the underlying math and [classes](objAndClass.md) (programming objects) that were used/implemented. Finally the approach to this lab itself. The first two approaches can be found in their respective locations (linked any time either are mentioned) while this lab's approach will be detailed in full below.
+Much of my approach for this lab was similar to that of the last lab. I utilized the same 3D engine that I have been continuously working on for the final project. The biggest difference is just that I needed to now add in the ability to texture an object. This was more difficult that I originally anticipated, but I was still able to get it all working. The first thing that I did was get my previous icosehedron into this scene. From here I needed to find a texture for it that I liked. After finding this I decided to start making sime minor changes to the architecture by making shaders be seperate in another js file rather than being in the html as it was starting to get a bit ridiculous to read. After getting these separated, I started to get the actual texturing working.
 
-## [3D Engine](engine.md) approach
+Getting the texture to work was a bit of a challenge admittedly. This was mostly because I was trying to develop between a Macbook and a windows machine. For some reason locally accessing a file just works in  safari, but on my windows in every browser I tried, I couldn't seem to get the cross-origin-resourcse-sharing to worl (CORS). After some tweaks I was able to get my windows machine to load a file using a local server, and I just needed to change this manually when going back to my mac. After this point I was ready to finalize the texute loading.
 
-The [3D Engine](engine.md) that I wanted to implement is constantly being adapted as I am adding in new features. The idea behind this [engine](engine.md) is that I wanted to have something that was very adaptable. Adaptable to the point that it would be easy enough to implement feautures such as a drag and drop of obj files or something similar. At the very least I wanted to make it so that a developer (as of right now me specifically) would be able to add new objects into the scene with as minmal lines of code as possible. More about the [engine](engine.md) specifically can be found [here](engine.md). This information will hopefully update more as I update the project and my future labs as a whole. The separation of this approach from the lab's approach will allow me to update these approach files separately so that I can reuse them in the other labs/projects that use the same [3D engine](engine.md).
+I used the image d20Texture.png for the texture as it helped to figure out the index issue of figuring out which indecies go where when loading the image on the object. Regardless, after messing around I was able to finally get the texture loading to work correctly and I then took it upon myself to add the feature in were it interacted with the scene's lighting the same as the previous lab. One thing to note is that many of the previous interactions from lab 4 are still present as I thought it would be interesting to allow the user to still turn the lights on and off to see the different effects it had on the die. So instead of using the previous controls for lab 3 to rotate the object, I just shifted them down the num row to 7-9.
 
-## [Math/class objects](objAndClass.md) approach
+In order to determine the exact cordinates of the texture for the object, I used a program called Asperite to open the png file and look at the coordinates. From there I was able to take the max coordinate values and divide the coordinate for a vertex by this max value to get it's texutre coordinate between 0 and 1 for gl to handle properly. In the very near future I plan to implement a obj file reading which will allow for a better experience when trying to get a new object in the scene.
 
-What is meant by this approach is simply that new objects and classes were implemented into all of this code. This was namely done for easy of access to variables and to reduce weird issues that I was having with the [MV](../Common/MV.js) objects from the [MV](../Common/MV.js) code in the [Common](../Common/) folder. Another reasoning to this was due to my interest in implementing a very useful class called quaternions. More about this class will be dicussed in full here, as well as all of the other useful classes and objects that I used to fully implement this engine. This information will hopefully update more as I update the project and my future labs as a whole. The separation of this approach from the lab's approach will allow me to update these approach files separately so that I can reuse them in the other labs/projects that use the same 3D engine.
+While running a local server is not necessary, it can be considered useful. In order to do this, I installed node.js to both of my machines. By running:
 
-## Lab specific approach
+``` cmd
+    sudo npm install http-server -g
+```
 
-For me, this lab served as a way to get modular lighting situations and object rendering working as I prepare and develop for the final game project for the end of the semester. Knowing that I needed to create an interactive 3D scene for that final project, I wanted to make this scene as interactive and adaptable as possible too. Because of this, the aforementioned approaches are fitting to have came first for this lab. As for the intention of this class, the intention was to learn how to setup different lighting methods, get both perspecitve and orthographic projections working as well as serve as an introduction to the 3D environment. A chair object was provided as the object to have rendered. However, given the aforementioned engine, this interpretation of the lab will have a couple other viewable objects.
+On my mac I was able to run an http server for the EE465 directory:
 
-The first step that I had to take was to get viewing successfully working on the scene. To do this I first set up a series of differently colored quad objects and got them to be viewed in the scene:
+``` cmd
+    http-server /PathToGithubRepo/EE465/Lab\ 5 -p 1337
+```
 
-![Walls PNG](Screenshots/wallsShot.png)
-
-The next thing I wanted to get working was a brief amount of movement (all controls detailed below):
-
-![Move Gif](Screenshots/movement.gif)
-
-Next was rotations to allow for the user to turn around and observe their environment (all controls detailed below):
-
-![Look Gif](Screenshots/look.gif)
-
-After these were both working it was onto directional and point light sources (non specular):
-
-![Lights Gif](Screenshots/lights.gif)
-
-Keeping in mind that the above lights do not use specular reflections, the next thing was to integrate a specular lighting toggle where the user could toggle between the two (all controls detailed below):
-
-![SpecLights Gif](Screenshots/specLights.gif)
-
-Finally after getting all view related things working, I imported the given chair object and added it to the scene to view it:
-
-![Chair gif](Screenshots/chair.gif)
-
-At this point all of what needed to be implemented had been. The last thing that I wanted to get implemented and working was the toggle for changing the projection matrix from perspective to othorgraphic and back. After adding that in we get (all controls detailed below):
-
-![OrhtoChange Gif](Screenshots/orthoChange.gif)
-
-The final thing that I wanted to add in, was the "look at" functions. Oh boy, was this a doozy. Since I am using quaternions and I wanted to keep my code true to this, figuring out how to get the look at function to work was, to say the least, a process. However, after much pain and frustration, I got it to work (all controls detailed below):
-
-![LookAt Gif](Screenshots/lookAt.gif)
-
-This all was a very frustrating process as I was attempting to implement this all. A lot of debugging and bug fixing happened as I was comparing this project to attributes from the [Unity Game engine](https://unity.com). I am very familiar with that environment and was using Unity's camera to figure out what was wrong with my matricies that described where the camera was. However, after a long time of trial an error, eventually I got something that looked pretty good. The only control that is, questionable in how it makes the app look visually is the look at functionality. There is a weird snapping effect that can happen that feels a bit jarring that will make me need to revisit this feature in the future. However, until then enjoy Z-targetting at its finest.
+After doing this I was able to connect to the server by putting in the url: localhost:1337/Lab%205/viewer.html. This allows for us to finally access things like the textures much easier rather than struggling with CORS. The important thing to note about this though is that the server is running in the EE465 directory. This is important since the common folder is used across all labs and therefore in the htmls is accessed by using the "../Common" which will only work if the parent directory of the labs is also viewable within the server. Just remember that once you are done using the server, ensure that you kill the process, otherwise the server will just continuously run in the background.
 
 ## Controls
 
@@ -68,25 +42,20 @@ This all was a very frustrating process as I was attempting to implement this al
 - L: Turn off/on the specular lighting
 - O: Turn off/on orthographic projection
 - 1-6: Turn off/on corresponding light (1-3 for the 3 directional lights, 4-6 for the 3 point lights)
+- 7: Rotate the D20 aroung the x-axis
+- 8: Rotate the D20 aroung the y-axis
+- 9: Rotate the D20 aroung the z-axis
 
 ## Requirements
 
-1. Setting up the camera using the look at method
+1. Seeing the texture on the object when it loads
 
-    - This task was handled with the "look at" functionality of the "e" key. This is done using quaternions as can and will be explained in the math/classes readme
+    - Pretty self explanitory, when the d20 loads we expect to see the designated texture to appear on it. This is the case and the d20 should have the texture on it, assuming you set up the server as stated above.
 
-2. Implementing orthographic and perspective projections
+2. Seeing the texture on the entire object and being able to rotate with the same controls as in lab 3
 
-    - As mentioned in the controls section and detailed (and shown above) the othographic and perspective projections can be toggled using the O key at any moment during the app.
+    - As mention previously, I hope that this is slightly flexible as I shifted the usage keys from 1-3 to 7-9 so that the user can still toggle the lights in the scene with 1-6 to see how the lighting dynamically effects the die.
 
-3. Implementing two different lights
+3. Discussing the controls and implementation in readme
 
-    - Uhhh, there are 6 different lights and two different types of lights. All of which can be toggled using the numbers 1-6.
-
-4. Implementing specular and non-specular toggle
-
-    - This has been done and can be toggled using the L key.
-
-5. Discussion of implementation
-
-    - While for now the implementation of the engine and math has not been fully detailed yet, this lab's implementation should be fully detailed at this point. As I continue to update this and the engine I will continue to remove weird english or sentences that are no longer applicable (things that say should, or will, etc...)
+    - Yeah, this readme should cover this as always. Above the requirements section is the controls section and all throughout there is descriptions on everything that changed for this lab to succeed.
